@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ItemsList from './ItemsList';
+import Header from './Header';
+import ShoppingListForm from './ShoppingListForm';
 
 class App extends React.Component {
   state = {
@@ -35,24 +37,15 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">ReactND - Coding Practice</h1>
-        </header>
-        <h2>Shopping List</h2>
-        <form onSubmit={this.addItem}>
-          <input
-            type="text"
-            placeholder="Enter New Item"
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-          <button disabled={this.inputIsEmpty()}>Add</button>
-        </form>
-
-        <button onClick={this.deleteLastItem} disabled={this.noItemsFound()}>
-          Delete Last Item
-        </button>
+    	<Header/>
+        <ShoppingListForm
+             addItem={this.addItem}
+              value={this.state.value}
+              handleChange={this.handleChange}
+              inputIsEmpty={this.inputIsEmpty}
+				deleteLastItem={this.deleteLastItem}
+              noItemsFound={this.noItemsFound}
+        />
 		<ItemsList
 			items={this.state.items}
 		/>
